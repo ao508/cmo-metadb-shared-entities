@@ -5,28 +5,22 @@ import org.mskcc.cmo.shared.SampleMetadata;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import org.springframework.data.neo4j.core.schema.GeneratedValue;
-import org.springframework.data.neo4j.core.schema.Id;
-import org.springframework.data.neo4j.core.schema.Node;
-import org.springframework.data.neo4j.core.schema.Relationship;
-import org.springframework.data.neo4j.core.support.UUIDStringGenerator;
-import org.springframework.data.neo4j.core.schema.Relationship.Direction;
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
+import org.neo4j.ogm.annotation.typeconversion.Convert;
+import org.neo4j.ogm.id.UuidStrategy;
+import org.neo4j.ogm.typeconversion.UuidStringConverter;
 
-//import org.neo4j.ogm.annotation.GeneratedValue;
-//import org.neo4j.ogm.annotation.Id;
-//import org.neo4j.ogm.annotation.NodeEntity;
-//import org.neo4j.ogm.annotation.Relationship;
-//import org.neo4j.ogm.annotation.typeconversion.Convert;
-//import org.neo4j.ogm.id.UuidStrategy;
-//import org.neo4j.ogm.typeconversion.UuidStringConverter;
-
-@Node("cmo_metadb_sample_metadata")
+@NodeEntity(label="cmo_metadb_sample_metadata")
 public class SampleMetadataEntity extends SampleMetadata {
-    @Id @GeneratedValue(UUIDStringGenerator.class)
+    @Id @GeneratedValue(strategy = UuidStrategy.class)
+    @Convert(UuidStringConverter.class)
     private UUID metaDbUuid;
-    @Relationship(type="SP_TO_SP", direction=Direction.INCOMING)
+    @Relationship(type="SP_TO_SP", direction=Relationship.INCOMING)
     private List<Sample> linkedSampleList;
-    @Relationship(type="PX_TO_SP", direction=Direction.INCOMING)
+    @Relationship(type="PX_TO_SP", direction=Relationship.INCOMING)
     private PatientMetadata patient;
 
     public SampleMetadataEntity() {

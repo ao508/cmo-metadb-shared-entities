@@ -1,32 +1,25 @@
 package org.mskcc.cmo.shared.neo4j;
 
-import org.mskcc.cmo.shared.neo4j.PatientMetadata;
 import java.io.Serializable;
 import java.util.Collection;
-import org.springframework.data.neo4j.core.schema.GeneratedValue;
-import org.springframework.data.neo4j.core.schema.Id;
-import org.springframework.data.neo4j.core.schema.Node;
-import org.springframework.data.neo4j.core.schema.Relationship;
-import org.springframework.data.neo4j.core.support.UUIDStringGenerator;
-import org.springframework.data.neo4j.core.schema.Relationship.Direction;
-//import org.neo4j.ogm.annotation.EndNode;
-//import org.neo4j.ogm.annotation.GeneratedValue;
-//import org.neo4j.ogm.annotation.Id;
-//import org.neo4j.ogm.annotation.RelationshipEntity;
-//import org.neo4j.ogm.annotation.StartNode;
+import org.neo4j.ogm.annotation.EndNode;
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
+import org.neo4j.ogm.annotation.RelationshipEntity;
+import org.neo4j.ogm.annotation.StartNode;
 
 /**
  *
  * @author ochoaa
  */
-//@RelationshipEntity(type="PX_TO_PX")
+@RelationshipEntity(type="PX_TO_PX")
 public class PatientToPatientEntity implements Serializable {
     @Id @GeneratedValue
     private Long id;
     private Collection<String> linkedPatientNames;
-//    @StartNode
+    @StartNode
     private Patient linkedPatient;
-//    @EndNode
+    @EndNode
     private PatientMetadata patientMetadata;
 
     public PatientToPatientEntity() {}

@@ -1,29 +1,30 @@
 package org.mskcc.cmo.shared.neo4j;
 
-import org.mskcc.cmo.shared.neo4j.SampleMetadataEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import org.springframework.data.neo4j.core.schema.GeneratedValue;
-import org.springframework.data.neo4j.core.schema.Id;
-import org.springframework.data.neo4j.core.schema.Node;
-import org.springframework.data.neo4j.core.schema.Relationship;
-import org.springframework.data.neo4j.core.support.UUIDStringGenerator;
-import org.springframework.data.neo4j.core.schema.Relationship.Direction;
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
+import org.neo4j.ogm.annotation.typeconversion.Convert;
+import org.neo4j.ogm.id.UuidStrategy;
+import org.neo4j.ogm.typeconversion.UuidStringConverter;
 
 /**
  *
  * @author ochoaa
  */
-@Node("cmo_metadb_patient_metadata")
+@NodeEntity(label="cmo_metadb_patient_metadata")
 public class PatientMetadata implements Serializable {
-    @Id @GeneratedValue(UUIDStringGenerator.class)
+    @Id @GeneratedValue(strategy = UuidStrategy.class)
+    @Convert(UuidStringConverter.class)
     private UUID metaDbUuid;
     private String investigatorPatientId;
-    @Relationship(type="PX_TO_SP", direction=Direction.OUTGOING)
+    @Relationship(type="PX_TO_SP", direction=Relationship.OUTGOING)
     private List<SampleMetadataEntity> sampleMetadataList;
-    @Relationship(type="PX_TO_PX", direction=Direction.INCOMING)
+    @Relationship(type="PX_TO_PX", direction=Relationship.INCOMING)
     private List<Patient>  linkedPatientList;
 
     public PatientMetadata() {}
