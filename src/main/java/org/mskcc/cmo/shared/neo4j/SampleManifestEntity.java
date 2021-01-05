@@ -21,11 +21,45 @@ public class SampleManifestEntity extends SampleManifest {
     private List<Sample> sampleList;
     @Relationship(type = "PX_TO_SP", direction = Relationship.INCOMING)
     private PatientMetadata patient;
-    @Relationship(type = "SAMPLE_METADATA", direction = Relationship.OUTGOING)
+    @Relationship(type = "SAMPLE_MANIFEST", direction = Relationship.OUTGOING)
     private SampleManifest sampleManifest;
 
     public SampleManifestEntity() {
         super();
+    }
+
+    public SampleManifestEntity(SampleManifest sampleManifest) {
+        this.mrn = sampleManifest.getMrn();
+        this.cmoPatientId = sampleManifest.getCmoPatientId();
+        this.cmoSampleId = sampleManifest.getCmoSampleId();
+        this.igoId = sampleManifest.getIgoId();
+        this.investigatorSampleId = sampleManifest.getInvestigatorSampleId();
+        this.species = sampleManifest.getSpecies();
+        this.sex = sampleManifest.getSex();
+        this.tumorOrNormal = sampleManifest.getTumorOrNormal();
+        this.sampleType = sampleManifest.getSampleType();
+        this.preservation = sampleManifest.getPreservation();
+        this.tumorType = sampleManifest.getTumorType();
+        this.parentTumorType = sampleManifest.getParentTumorType();
+        this.specimenType = sampleManifest.getSpecimenType();
+        this.sampleOrigin = sampleManifest.getSampleOrigin();
+        this.tissueSource = sampleManifest.getTissueSource();
+        this.tissueLocation = sampleManifest.getTissueLocation();
+        this.recipe = sampleManifest.getRecipe();
+        this.baitset = sampleManifest.getBaitset();
+        this.fastqPath = sampleManifest.getFastqPath();
+        this.principalInvestigator = sampleManifest.getPrincipalInvestigator();
+        this.ancestorSample = sampleManifest.getAncestorSample();
+        this.doNotUse = sampleManifest.isDoNotUse();
+        this.sampleStatus = sampleManifest.getSampleStatus();
+        this.cmoInfoIgoId = sampleManifest.getCmoInfoIgoId();
+        this.cmoSampleName = sampleManifest.getCmoSampleName();
+        this.sampleName = sampleManifest.getSampleName();
+        this.cmoSampleClass = sampleManifest.getCmoSampleClass();
+        this.oncotreeCode = sampleManifest.getOncotreeCode();
+        this.collectionYear = sampleManifest.getCollectionYear();
+        this.tubeId = sampleManifest.getTubeId();
+        this.cfDNA2dBarcode = sampleManifest.getCfDNA2dBarcode();
     }
 
     /**
