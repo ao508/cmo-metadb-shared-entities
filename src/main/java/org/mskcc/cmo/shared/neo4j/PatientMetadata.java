@@ -4,30 +4,31 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import org.neo4j.ogm.annotation.GeneratedValue;
-import org.neo4j.ogm.annotation.Id;
-import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.annotation.typeconversion.Convert;
-import org.neo4j.ogm.id.UuidStrategy;
 import org.neo4j.ogm.typeconversion.UuidStringConverter;
+import org.springframework.data.neo4j.core.schema.GeneratedValue;
+import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.schema.Node;
+import org.springframework.data.neo4j.core.schema.Relationship;
+import org.springframework.data.neo4j.core.schema.Relationship.Direction;
+import org.springframework.data.neo4j.core.support.UUIDStringGenerator;
 
 /**
  *
  * @author ochoaa
  */
 
-@NodeEntity(label = "cmo_metadb_patient_metadata")
+@Node("cmo_metadb_patient_metadata")
 public class PatientMetadata implements Serializable {
-    @Id @GeneratedValue(strategy = UuidStrategy.class)
+    @Id @GeneratedValue(UUIDStringGenerator.class)
     @Convert(UuidStringConverter.class)
     private UUID uuid;
     private String investigatorPatientId;
-    @Relationship(type = "PX_TO_SP", direction = Relationship.OUTGOING)
+    @Relationship(type = "PX_TO_SP", direction = Direction.OUTGOING)
     private List<SampleManifestEntity> sampleManifestList;
-    @Relationship(type = "PX_TO_NORMAL", direction = Relationship.OUTGOING)
+    @Relationship(type = "PX_TO_NORMAL", direction = Direction.OUTGOING)
     private List<SampleManifestEntity> normalSampleManifestList;
-    @Relationship(type = "PX_TO_PX", direction = Relationship.INCOMING)
+    @Relationship(type = "PX_TO_PX", direction = Direction.INCOMING)
     private List<Patient>  patientList;
 
     public PatientMetadata() {}

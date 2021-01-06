@@ -13,11 +13,21 @@
     <java.version>1.8</java.version>
     <maven.compiler.version>1.8</maven.compiler.version>
     <spring.boot.version>2.3.3.RELEASE</spring.boot.version>
+    <spring.data.neo4j.version>6.0.2</spring.data.neo4j.version>
+    <neo4j-ogm.version>3.1.2</neo4j-ogm.version>
+    <neo4j-java-driver.version>1.6.2</neo4j-java-driver.version>
+    <!-- cmo metadb common -->
     <cmo_metadb_common.version>v1.1-alpha</cmo_metadb_common.version>
     <cmo_metadb_common.groupId>com.github.mskcc</cmo_metadb_common.groupId>
     <cmo_metadb_common.artifactId>cmo-metadb-common</cmo_metadb_common.artifactId>
   </properties>
 
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
   <pluginRepositories>
     <pluginRepository>
       <id>jitpack.io</id>
@@ -25,18 +35,44 @@
     </pluginRepository>
   </pluginRepositories>
 
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.3.3.RELEASE</version>
+  </parent>
+
   <dependencies>
+      <!-- neo4j spring data/driver dependencies -->
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-neo4j</artifactId>
-      <version>${spring.boot.version}</version>
+      <groupId>com.github.spring-projects</groupId>
+      <artifactId>spring-data-neo4j</artifactId>
+      <version>${spring.data.neo4j.version}</version>
     </dependency>
-    <dependency>
+<!--    <dependency>
       <groupId>org.neo4j</groupId>
       <artifactId>neo4j-ogm</artifactId>
       <version>3.2.17</version>
       <type>pom</type>
+    </dependency-->
+    <dependency>
+      <groupId>org.neo4j</groupId>
+      <artifactId>neo4j-ogm-core</artifactId>
+      <version>${neo4j-ogm.version}</version>
     </dependency>
+
+    <!-- do we need these neo4j dependencies also for the shared entities? -->
+    <dependency>
+      <groupId>org.neo4j</groupId>
+      <artifactId>neo4j-ogm-embedded-driver</artifactId>
+      <version>${neo4j-ogm.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.neo4j.driver</groupId>
+      <artifactId>neo4j-java-driver</artifactId>
+      <version>${neo4j-java-driver.version}</version>
+    </dependency>
+
+    <!-- neo4j apoc plugin support -->
     <dependency>
       <groupId>com.graphaware.neo4j</groupId>
       <artifactId>server-community</artifactId>

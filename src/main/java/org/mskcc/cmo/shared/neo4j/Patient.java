@@ -1,25 +1,26 @@
 package org.mskcc.cmo.shared.neo4j;
 
 import java.io.Serializable;
-import org.neo4j.ogm.annotation.GeneratedValue;
-import org.neo4j.ogm.annotation.Id;
-import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Property;
-import org.neo4j.ogm.annotation.Relationship;
+import org.springframework.data.neo4j.core.schema.GeneratedValue;
+import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.schema.Node;
+import org.springframework.data.neo4j.core.schema.Property;
+import org.springframework.data.neo4j.core.schema.Relationship;
+import org.springframework.data.neo4j.core.schema.Relationship.Direction;
 
 /**
  *
  * @author ochoaa
  */
 
-@NodeEntity(label = "patient")
+@Node("patient")
 public class Patient implements Serializable {
     @Id @GeneratedValue
     private Long id;
-    @Property(name = "value")
+    @Property("value")
     private String patientId;
     private String idSource;
-    @Relationship(type = "PX_TO_PX", direction = Relationship.OUTGOING)
+    @Relationship(type = "PX_TO_PX", direction = Direction.OUTGOING)
     private PatientMetadata patientMetadata;
 
     public Patient() {}
