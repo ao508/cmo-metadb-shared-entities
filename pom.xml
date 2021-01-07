@@ -48,19 +48,16 @@
       <artifactId>spring-data-neo4j</artifactId>
       <version>${spring.data.neo4j.version}</version>
     </dependency>
-<!--    <dependency>
+    <dependency>
       <groupId>org.neo4j</groupId>
       <artifactId>neo4j-ogm</artifactId>
-      <version>3.2.17</version>
-      <type>pom</type>
-    </dependency-->
+      <version>1.1.0</version>
+    </dependency>
     <dependency>
       <groupId>org.neo4j</groupId>
       <artifactId>neo4j-ogm-core</artifactId>
       <version>${neo4j-ogm.version}</version>
     </dependency>
-
-    <!-- do we need these neo4j dependencies also for the shared entities? -->
     <dependency>
       <groupId>org.neo4j</groupId>
       <artifactId>neo4j-ogm-embedded-driver</artifactId>
@@ -71,7 +68,6 @@
       <artifactId>neo4j-java-driver</artifactId>
       <version>${neo4j-java-driver.version}</version>
     </dependency>
-
     <!-- neo4j apoc plugin support -->
     <dependency>
       <groupId>com.graphaware.neo4j</groupId>
