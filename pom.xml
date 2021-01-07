@@ -53,7 +53,7 @@
       <artifactId>neo4j-ogm</artifactId>
       <version>1.1.0</version>
     </dependency>
-    <dependency>
+<!--    <dependency>
       <groupId>org.neo4j</groupId>
       <artifactId>neo4j-ogm-core</artifactId>
       <version>${neo4j-ogm.version}</version>
@@ -62,7 +62,7 @@
       <groupId>org.neo4j</groupId>
       <artifactId>neo4j-ogm-embedded-driver</artifactId>
       <version>${neo4j-ogm.version}</version>
-    </dependency>
+    </dependency>-->
     <dependency>
       <groupId>org.neo4j.driver</groupId>
       <artifactId>neo4j-java-driver</artifactId>

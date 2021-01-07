@@ -4,18 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.mskcc.cmo.shared.SampleManifest;
-import org.neo4j.ogm.annotation.GeneratedValue;
-import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.annotation.typeconversion.Convert;
-import org.neo4j.ogm.id.UuidStrategy;
-import org.neo4j.ogm.typeconversion.UuidStringConverter;
+import org.springframework.data.neo4j.core.schema.GeneratedValue;
+import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.support.UUIDStringGenerator;
 
 @NodeEntity(label = "cmo_metadb_sample_metadata")
 public class SampleManifestEntity extends SampleManifest {
-    @Id @GeneratedValue(strategy = UuidStrategy.class)
-    @Convert(UuidStringConverter.class)
+    @Id @GeneratedValue(UUIDStringGenerator.class)
     private UUID uuid;
     @Relationship(type = "SP_TO_SP", direction = Relationship.INCOMING)
     private List<Sample> sampleList;

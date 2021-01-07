@@ -1,11 +1,12 @@
 package org.mskcc.cmo.shared.neo4j;
 
 import java.io.Serializable;
-import org.neo4j.ogm.annotation.GeneratedValue;
-import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
+import org.springframework.data.neo4j.core.schema.GeneratedValue;
+import org.springframework.data.neo4j.core.schema.Id;
+
 /**
  * Node entity representing the linked sample entity from an external system.
  * @author ochoaa

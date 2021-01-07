@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import org.neo4j.ogm.annotation.typeconversion.Convert;
-import org.neo4j.ogm.typeconversion.UuidStringConverter;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
@@ -21,7 +19,6 @@ import org.springframework.data.neo4j.core.support.UUIDStringGenerator;
 @Node("cmo_metadb_patient_metadata")
 public class PatientMetadata implements Serializable {
     @Id @GeneratedValue(UUIDStringGenerator.class)
-    @Convert(UuidStringConverter.class)
     private UUID uuid;
     private String investigatorPatientId;
     @Relationship(type = "PX_TO_SP", direction = Direction.OUTGOING)
